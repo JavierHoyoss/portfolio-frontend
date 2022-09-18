@@ -9,6 +9,7 @@ import { AcercaComponent } from './componentes/acerca/acerca.component';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { ExperienciaComponent } from './componentes/experiencia/experiencia.component';
 import { EducacionComponent } from './componentes/educacion/educacion.component';
+import { EdicionService } from './servicios/edicion.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { EducacionComponent } from './componentes/educacion/educacion.component'
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [EdicionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

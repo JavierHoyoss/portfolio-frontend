@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EdicionService } from './servicios/edicion.service';
 
 @Component({
   selector: 'app-root',
