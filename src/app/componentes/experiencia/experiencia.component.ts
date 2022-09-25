@@ -15,6 +15,7 @@ export class ExperienciaComponent implements OnInit {
 
   title: string | undefined;
   description: string | undefined;  
+  experienciaseleccionada: Experiencia | undefined;
 
   constructor(public edicionService:EdicionService) {
     
@@ -28,6 +29,7 @@ export class ExperienciaComponent implements OnInit {
     this.edicionService.agregar({
       title: newTitle.value,
       description: newDescription.value,
+      id: this.experiencias.length + 1
     })
     newTitle.value = '';
     newDescription.value = '';
@@ -39,9 +41,11 @@ export class ExperienciaComponent implements OnInit {
       this.edicionService.borrar(experiencia);
     }
   }
-  ///agregarExperiencia(experiencia: Experiencia) {
-    //console.log(experiencia);
-    //this.edicionService.agregarExperiencia(experiencia);
+  editar(experiencia: Experiencia){
+    }
+    
 
-  //}
-}
+  
+  }
+
+

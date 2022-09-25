@@ -8,12 +8,7 @@ export class EdicionService {
   experiencias: Experiencia[] = [];
 
   constructor() {
-    this.experiencias= [
-        {title: "laboratorio", description:"trabaje ahi"},
-        {title: "laboratorios1232", description:"trabaje ahi1231321"}
-    ];
-
-  }
+      }
 
   mostrar() {
     if(localStorage.getItem('experiencias') === null) {
@@ -46,4 +41,8 @@ export class EdicionService {
       }
     }
   }
+  editar(experiencia: Experiencia){
+
+  }
+  
 }
