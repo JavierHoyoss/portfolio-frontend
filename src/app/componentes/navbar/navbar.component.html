@@ -21,7 +21,8 @@
             <a href="" class="btn btn-black btn-lg text-secondary "><img href="#" src="../../../assets/linkedin.png" class="imagenesredes"></a>
           </li>
           <li class="nav-item">
-            <a href="" class="btn btn-light btn-lg text-secondary mx-2">Login</a>
+            <a href="/login" class="btn btn-info btn-lg text-light mx-2" *ngIf="!isLogged">Login</a>
+            <a href="" class="btn btn-danger btn-lg text-light mx-2" (click)="onLogOut()"*ngIf="isLogged">LogOut</a>
           </li>
         </ul>
       </div>
