@@ -21,6 +21,10 @@ import { LoginComponent } from './componentes/login/login.component';
 import { interceptorProvider } from './servicios/interceptor-service';
 import { EditExperienciaComponent } from './componentes/experiencia/edit-experiencia.component';
 import { EditEducacionComponent } from './componentes/educacion/edit-educacion/edit-educacion.component';
+import { EditAcercaComponent } from './componentes/acerca/edit-acerca.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideStorage,getStorage } from '@angular/fire/storage';
 
 
 @NgModule({
@@ -37,7 +41,8 @@ import { EditEducacionComponent } from './componentes/educacion/edit-educacion/e
     HomeComponent,
     LoginComponent,
     EditExperienciaComponent,
-    EditEducacionComponent
+    EditEducacionComponent,
+    EditAcercaComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +50,8 @@ import { EditEducacionComponent } from './componentes/educacion/edit-educacion/e
     FormsModule,    
     NgCircleProgressModule.forRoot({}),
     HttpClientModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideStorage(() => getStorage()),
     
   ],
   providers: [EdicionService,
