@@ -19,6 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './componentes/home/home.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { interceptorProvider } from './servicios/interceptor-service';
+import { EditExperienciaComponent } from './componentes/experiencia/edit-experiencia.component';
+import { EditEducacionComponent } from './componentes/educacion/edit-educacion/edit-educacion.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { interceptorProvider } from './servicios/interceptor-service';
     ProyectosComponent,
     FooterComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    EditExperienciaComponent,
+    EditEducacionComponent
   ],
   imports: [
     BrowserModule,

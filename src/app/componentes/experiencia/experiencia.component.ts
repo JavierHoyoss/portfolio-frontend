@@ -1,51 +1,62 @@
-import { Component, OnInit, Input} from '@angular/core';
-import { Experiencia } from '../../clase/experiencia';
-import { EdicionService } from '../../servicios/edicion.service';
-
+import { Component, OnInit } from '@angular/core';
+import { Experiencia } from 'src/app/clase/experiencia2';
+import { SExperienciaService } from 'src/app/servicios/s-experiencia.service';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-experiencia',
   templateUrl: './experiencia.component.html',
   styleUrls: ['./experiencia.component.css']
 })
-
 export class ExperienciaComponent implements OnInit {
-  @Input() experiencia: Experiencia | undefined;
-  experiencias: Experiencia[] = [];
+  expe: Experiencia[] = [];
+  nombreE: string = '';
+  descripcionE: string = '';  
 
-  title: string | undefined;
-  description: string | undefined;  
-  experienciaseleccionada: Experiencia | undefined;
+  constructor(private sExperiencia: SExperienciaService, private tokenService: TokenService) { }
 
-  constructor(public edicionService:EdicionService) {
-    
-   }
+  isLogged = false;
 
   ngOnInit(): void {
-    this.experiencias = this.edicionService.mostrar();
+    this.cargarExperiencia();
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+    } else {
+      this.isLogged = false;
+    }
+
+     
   }
 
-  agregar(newTitle: HTMLInputElement, newDescription: HTMLTextAreaElement) {
-    this.edicionService.agregar({
-      title: newTitle.value,
-      description: newDescription.value,
-      id: this.experiencias.length + 1
-    })
-    newTitle.value = '';
-    newDescription.value = '';
-    return false;
+  cargarExperiencia(): void {
+    this.sExperiencia.lista().subscribe(data => { this.expe = data; })
   }
 
-  borrar(experiencia: Experiencia) {
-    if(confirm('¿Estás seguro de eliminar estos datos?')) {
-      this.edicionService.borrar(experiencia);
-    }
-  }
-  editar(experiencia: Experiencia){
-    }
+  delete(id?: number){
     
-
-  
+    if(id != undefined){
+      if(confirm('¿Estás seguro de eliminar estos datos?')) {
+      this.sExperiencia.delete(id).subscribe(
+        data => {
+          this.cargarExperiencia();
+        }, err => {
+          alert("No se pudo borrar la experiencia");
+        }
+        
+      )
+    }
+    }
+  }
+  onCreate(): void{
+    const expe = new Experiencia(this.nombreE, this.descripcionE);
+    this.sExperiencia.save(expe).subscribe(
+      data => {
+        alert("Experiencia añadida"); 
+        this.cargarExperiencia();               
+      }, err => {
+        alert("Falló al añadir experiencia");        
+      }
+    )
   }
 
-
+}

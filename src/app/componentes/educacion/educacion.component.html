@@ -1,40 +1,72 @@
 <div class="container mt-3">
-  <div class="card card-header text-center mt-3"> <h4>Educacion </h4> </div>
-    <div class="row mt-3">
-        <div class="col-md-3 col-sm-12 col-xs-12">
-            <div class="card">
-                <div class="card-body">
-                  <!-- Formulario para agregar experiencias -->
-                  <form (submit)="agregar(newTitle, newDescription)">
-                    <div class="form-group">
-                      <input type="text" placeholder="Titulo de la experiencia" #newTitle class="form-control">
-                    </div>
-                    <div class="form-group">
-                      <textarea  #newDescription cols="30" rows="10" class="form-control" placeholder="Descripción de la experiencia"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Agregar</button>
-                  </form>
-                </div>
-              </div>
-        </div>
-        <div class="col-md-9 col-sm-12 col-xs-12">
-            <div class="card mb-2">
-                <div *ngFor="let experiencia of experiencias">
-                    <div class="card-header d-flex justify-content-between align-items-center">           
-                        <h5>{{ experiencia.title }}</h5>
-                        <div> 
-                        <button (click)="editar(experiencia)" [class.active]="experiencia" class="btn btn-success">
-                            editar
-                        </button>                      
-                        <button (click)="borrar(experiencia)" class="btn btn-danger">
-                            Eliminar
-                        </button>
-                        </div> 
-                    </div>
-                    <div class="card-body">                    
-                        <p>{{ experiencia.description }} {{experiencia.id}}</p>
-                    </div>                                   
+  <div class="card card-header text-center mt-3">
+    <h4>Educación</h4>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-3 col-sm-6 col-xs-6" *ngIf="isLogged">
+      <div class="card">
+        <div class="card-body">
+          <!-- Formulario para agregar experiencias -->
+          <form (ngSubmit)="onCreate()">
+            <div class="form-group">
+              <label for="nombreE">Nombre de la institución educativa</label>
+              <input
+                type="text"
+                placeholder="institución educativa"
+                class="form-control"
+                id="nombreE"
+                name="nombreE"
+                [(ngModel)]="nombreE"
+                required
+              />
             </div>
+            <div class="form-group">
+              <label for="descripcionE">Descripción de la educacion</label>
+              <input
+                type="text"
+                class="form-control"
+                id="descripcionE"
+                name="descripcionE"
+                [(ngModel)]="descripcionE"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">
+              Agregar
+            </button>
+          </form>
         </div>
+      </div>
     </div>
+    <div class="col-md-9 col-sm-12 col-xs-12">
+      <div class="card mb-2">
+        <div *ngFor="let educacion of educaciones">
+          <div
+            class="card-header d-flex justify-content-between align-items-center"
+          >
+            <h5>{{ educacion.nombreE }}</h5>
+            <div >
+              <button
+                class="btn btn-success"
+                routerLink="/editeducacion/{{educacion.id}}"
+                *ngIf="isLogged"
+              >
+                editar
+              </button>
+              <button
+                class="btn btn-danger"
+                (click)="delete(educacion.id)"
+                *ngIf="isLogged"
+              >
+                Eliminar
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <p>{{ educacion.descripcionE }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

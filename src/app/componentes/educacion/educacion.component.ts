@@ -1,48 +1,63 @@
-import { Component, OnInit, Input} from '@angular/core';
-import { Experiencia } from '../../clase/experiencia';
-import { EdicionService } from '../../servicios/edicion.service';
-
+import { Component, OnInit } from '@angular/core';
+import { Educacion } from 'src/app/clase/educacion';
+import { SEducacionService } from 'src/app/servicios/s-educacion.service';
+import { TokenService } from 'src/app/servicios/token.service';
 @Component({
   selector: 'app-educacion',
   templateUrl: './educacion.component.html',
-  styleUrls: ['./educacion.component.css']
+  styleUrls: ['./educacion.component.css'],
 })
-
 export class EducacionComponent implements OnInit {
-  @Input() experiencia: Experiencia | undefined;
-  experiencias: Experiencia[] = [];
+  educaciones: Educacion[] = [];
+  nombreE: string = '';
+  descripcionE: string = '';
 
-  title: string | undefined;
-  description: string | undefined;  
-  experienciaseleccionada: Experiencia | undefined;
+  constructor(
+    private sEducacion: SEducacionService,
+    private tokenService: TokenService
+  ) {}
 
-  constructor(public edicionService:EdicionService) {
-    
-   }
+  isLogged = false;
 
   ngOnInit(): void {
-    this.experiencias = this.edicionService.mostrar();
-  }
-
-  agregar(newTitle: HTMLInputElement, newDescription: HTMLTextAreaElement) {
-    this.edicionService.agregar({
-      title: newTitle.value,
-      description: newDescription.value,
-      id: this.experiencias.length + 1
-    })
-    newTitle.value = '';
-    newDescription.value = '';
-    return false;
-  }
-
-  borrar(experiencia: Experiencia) {
-    if(confirm('¿Estás seguro de eliminar estos datos?')) {
-      this.edicionService.borrar(experiencia);
+    this.cargarEducacion();
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+    } else {
+      this.isLogged = false;
     }
   }
-  editar(experiencia: Experiencia){
-    }
+
+  cargarEducacion(): void {
+    this.sEducacion.lista().subscribe((data) => {
+      this.educaciones = data;
+    });
+  }
+
+  delete(id?: number){
     
-
-  
+    if(id != undefined){
+      if(confirm('¿Estás seguro de eliminar estos datos?')) {
+      this.sEducacion.delete(id).subscribe(
+        data => {
+          this.cargarEducacion();
+        }, err => {
+          alert("No se pudo borrar la educacion");
+        }
+        
+      )
+    }
+    }
   }
+  onCreate(): void{
+    const educacion = new Educacion(this.nombreE, this.descripcionE);
+    this.sEducacion.save(educacion).subscribe(
+      data => {
+        alert("Educacion añadida"); 
+        this.cargarEducacion();               
+      }, err => {
+        alert("Falló al añadir educacion");        
+      }
+    )
+  }
+}
