@@ -1,5 +1,5 @@
 <div class="container mt-3">
-  <div class="card card-header text-center mt-3">
+  <div class="card card-header bg-warning text-center mt-3">
     <h4>Experiencia laboral</h4>
   </div>
   <div class="row mt-3">
@@ -24,6 +24,7 @@
               <label for="descripcionE">Descripción de la experiencia</label>
               <input
                 type="text"
+                placeholder="Descripcion de la experiencia"
                 class="form-control"
                 id="descripcionE"
                 name="descripcionE"
@@ -31,7 +32,7 @@
                 required
               />
             </div>
-            <button type="submit" class="btn btn-primary btn-block">
+            <button type="submit" class="btn btn-success btn-block mt-2">
               Agregar
             </button>
           </form>
@@ -42,7 +43,7 @@
       <div class="card mb-2">
         <div *ngFor="let experiencia of expe">
           <div
-            class="card-header d-flex justify-content-between align-items-center"
+            class="card-header bg-primary d-flex justify-content-between align-items-center"
           >
             <h5>{{ experiencia.nombreE }}</h5>
             <div>

@@ -1,20 +1,20 @@
 <div class="container mt-3">
     <div class="row" *ngIf="persona">
         <div class="col-md-3 col-sm-3 col-xs-3">
-            <div class="card border-light bg-light">
+            <div class="card border-light ">
                 <img src="{{persona.img}} "class="rounded-circle img-fluid" alt="...">
-                <div class="card-header border-light mt-2 text-center"><h5>{{persona.nombre}} {{persona.apellido}} </h5>
+                <div class="card-header border-light  mt-2 text-center"><h5>{{persona.nombre}} {{persona.apellido}} </h5>
                 <button class="button" class="btn btn-success" routerLink="/editacerca/{{persona.id}}" *ngIf="isLogged">editar</button> 
                 </div>
             </div>
         </div>
         <div class="col-md-9 col-sm-12 col-xs-12">
-            <div class="card border-light bg-light">                
-                <div class="card-header border-light  text-center"><h4>Acerca de mi</h4>
+            <div class="card border-light bg-secondary">                
+                <div class="card-header border-light bg-warning text-center"><h4>Acerca de mi</h4>
                     <button class="button" class="btn btn-success" routerLink="/editacerca/{{persona.id}}" *ngIf="isLogged">editar</button> 
                 </div>
                 <div class="card-body">                  
-                  <p class="card-text ">{{persona.acerca}}</p>                  
+                  <p class="card-text bg-secondary">{{persona.acerca}}</p>                  
                 </div>
               </div>
         </div>
