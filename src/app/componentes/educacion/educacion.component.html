@@ -22,14 +22,13 @@
             </div>
             <div class="form-group">
               <label for="descripcionE">Descripción de la educacion</label>
-              <input
-                type="text"
+              <textarea
                 class="form-control"
                 id="descripcionE"
                 name="descripcionE"
                 [(ngModel)]="descripcionE"
                 required
-              />
+              ></textarea>
             </div>
             <button type="submit" class="btn btn-primary btn-block">
               Agregar
@@ -45,10 +44,10 @@
             class="card-header d-flex justify-content-between align-items-center"
           >
             <h5>{{ educacion.nombreE }}</h5>
-            <div >
+            <div>
               <button
                 class="btn btn-success"
-                routerLink="/editeducacion/{{educacion.id}}"
+                routerLink="/editeducacion/{{ educacion.id }}"
                 *ngIf="isLogged"
               >
                 editar

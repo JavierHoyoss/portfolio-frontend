@@ -1,37 +1,86 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top" style="height: auto; ">
-    <div class="container">
-        <a class="navbar-brand" href="#">
-            <img href="#" src="../../../assets/APLogo2.png" class="img-fluid imagenes">
-        </a>
-    
+<nav
+  class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"
+  style="height: auto"
+>
+  <div class="container">
+    <a class="navbar-brand" href="https://argentinaprograma.inti.gob.ar/" target="_blank">
+      <img
+        href="#"
+        src="../../../assets/APLogo2.png"
+        class="img-fluid imagenes"
+      />
+    </a>
+
     <div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
       </button>
       <div class="container">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a href="" class="btn btn-black btn-lg text-secondary "><img href="#" src="../../../assets/facebook.png" class="imagenesredes"></a>
-          </li>
-          <li class="nav-item">
-            <a href="" class="btn btn-black btn-lg text-secondary "><img href="#" src="../../../assets/instagram.png" class="imagenesredes"></a>
-          </li>        
-          <li class="nav-item">
-            <a href="" class="btn btn-black btn-lg text-secondary "><img href="#" src="../../../assets/linkedin.png" class="imagenesredes"></a>
-          </li>
-          <li class="nav-item">
-            <a href="/login" class="btn btn-info btn-lg text-light mx-2" *ngIf="!isLogged">Login</a>
-            <a href="" class="btn btn-danger btn-lg text-light mx-2" (click)="onLogOut()"*ngIf="isLogged">LogOut</a>
-          </li>
-        </ul>
+          <ul class="navbar-nav ml-auto">           
+            <li class="nav-item">
+              <a href="https://www.instagram.com/yojavier12/" target="_blank" class="btn btn-black btn-lg text-secondary"
+                ><img
+                  href="#"
+                  src="../../../assets/instagram.png"
+                  class="imagenesredes"
+              /></a>
+            </li>
+            
+            <li class="nav-item">
+              <a href="https://www.linkedin.com/in/javier-sebastián-hoyos/" target="_blank" class="btn btn-black btn-lg text-secondary"
+                ><img
+                  href="#"
+                  src="../../../assets/linkedin.png"
+                  class="imagenesredes"
+              /></a>
+            </li>
+            <li class="nav-item">
+              <a
+                href="/login"
+                class="btn btn-info btn-lg text-light mx-2"
+                *ngIf="!isLogged"
+                >Login</a
+              >
+              <a
+                href=""
+                class="btn btn-danger btn-lg text-light mx-2"
+                (click)="onLogOut()"
+                *ngIf="isLogged"
+                >LogOut</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-    </div>
-</div>
+  </div>
 </nav>
-<div class="container">  
-    <br>  
-    <br>
-<img src="../../../assets/Nota-Formacio-n.jpg" class="d-block w-100 img-fluid" >
-      
+<div class="container">
+  <div class="row" *ngIf="banner">
+    <br />
+    <br />
+
+    <img src="{{ banner.img }} " class="d-block w-100 img-fluid" />
+
+    <div class="container mt-3">
+      <div class="row">
+        <button
+          class="btn btn-success block"
+          routerLink="/editbanner/{{ banner.id }}"
+          *ngIf="isLogged"
+        >
+          editar banner
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

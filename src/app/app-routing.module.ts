@@ -5,13 +5,15 @@ import { EditEducacionComponent } from './componentes/educacion/edit-educacion/e
 import { EditExperienciaComponent } from './componentes/experiencia/edit-experiencia.component';
 import { HomeComponent } from './componentes/home/home.component';
 import { LoginComponent } from './componentes/login/login.component';
+import { EditbannerComponent } from './componentes/navbar/editbanner.component';
 
 const routes: Routes = [
   {path:'',component: HomeComponent},
   {path:'login', component:LoginComponent},
   {path:'editexp/:id', component:EditExperienciaComponent},
   {path:'editeducacion/:id', component:EditEducacionComponent},
-  {path:'editacerca/:id', component:EditAcercaComponent}
+  {path:'editacerca/:id', component:EditAcercaComponent},
+  {path:'editbanner/:id', component:EditbannerComponent}
 ];
 
 @NgModule({
