@@ -1,9 +1,9 @@
 <div class="container mt-3">
     <div class="row" *ngIf="persona">
         <div class="col-md-3 col-sm-3 col-xs-3">
-            <div class="card border-light ">
+            <div class="card ">
                 <img src="{{persona.img}} "class="rounded-circle img-fluid" alt="...">
-                <div class="card-header border-light  mt-2 text-center"><h5>{{persona.nombre}} {{persona.apellido}} </h5>
+                <div class="card-header border-light bg-dark mt-2 text-center"><h5>{{persona.nombre}} {{persona.apellido}} </h5>
                 <button class="button" class="btn btn-success" routerLink="/editacerca/{{persona.id}}" *ngIf="isLogged">editar</button> 
                 </div>
             </div>
