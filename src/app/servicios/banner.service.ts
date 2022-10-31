@@ -1,14 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { Banner } from '../clase/banner';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BannerService {
-  URL = environment.URL + 'banner/';
+  URL = 'https://backendhoyos.herokuapp.com/banner/';
 
   constructor(private httpClient: HttpClient) { }
 
